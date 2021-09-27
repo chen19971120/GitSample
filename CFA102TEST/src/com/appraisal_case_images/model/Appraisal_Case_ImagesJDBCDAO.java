@@ -47,7 +47,10 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -77,7 +80,10 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -105,7 +111,10 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -141,7 +150,10 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -179,7 +191,10 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -192,15 +207,15 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 		return appraisal_case_imagesList;
 	}
 
-//	public static void main(String[] args) {
+	public static void main(String[] args) {
 
 //		測試insert
-//		Appraisal_Case_ImagesJDBCDAO dao = new Appraisal_Case_ImagesJDBCDAO();
-//		Appraisal_Case_ImagesVO acivo = new Appraisal_Case_ImagesVO();
-//		acivo.setAca_no(6);
-//		acivo.setAci_img(getPictureByteArray("D:\\Git\\GitSample\\CFA102\\images\\popcat.jpg"));
-//		dao.insert(acivo);
-//		System.out.println(acivo.getAci_no());
+		Appraisal_Case_ImagesJDBCDAO dao = new Appraisal_Case_ImagesJDBCDAO();
+		Appraisal_Case_ImagesVO acivo = new Appraisal_Case_ImagesVO();
+		acivo.setAca_no(9);
+		acivo.setAci_img(getPictureByteArray("D:\\Git\\GitSample\\CFA102TEST\\WebContent\\back_end\\appraisal_case_images\\images\\popcat.png"));
+		dao.insert(acivo);
+		System.out.println(acivo.getAci_no());
 //		測試OK
 
 //		測試update
@@ -213,7 +228,7 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 
 //		測試delete
 //		Appraisal_Case_ImagesJDBCDAO dao = new Appraisal_Case_ImagesJDBCDAO();
-//		dao.delete(105);
+//		dao.delete(4);
 //		測試OK
 
 //		測試findByPK
@@ -230,23 +245,24 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 //		for(Appraisal_Case_ImagesVO acivo:list) {
 //			System.out.println(acivo.getAci_no());
 //			System.out.println(acivo.getAca_no());
+//			readPicture(acivo.getAci_img());
 //		}
 //		測試OK
-//	}
+	}
 //	
-//	// 使用byte[]方式寫入資料庫
-//	public static byte[] getPictureByteArray(String path) {
-//		byte[] buffer = null;
-//		try {
-//			FileInputStream fis = new FileInputStream(path);
-//			buffer = new byte[fis.available()];
-//			fis.read(buffer);
-//			fis.close();
-//		} catch (IOException ie) {
-//			ie.printStackTrace();
-//		}
-//		return buffer;
-//	}
+	// 使用byte[]方式寫入資料庫
+	public static byte[] getPictureByteArray(String path) {
+		byte[] buffer = null;
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			buffer = new byte[fis.available()];
+			fis.read(buffer);
+			fis.close();
+		} catch (IOException ie) {
+			ie.printStackTrace();
+		}
+		return buffer;
+	}
 //	
 //	// 使用byte[]方式讀取圖片
 //	public static void readPicture(byte[] bytes){
@@ -260,4 +276,10 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 //			ie.printStackTrace();
 //		}
 //	}
+
+	@Override
+	public Appraisal_Case_ImagesVO getCase_Img(Integer aca_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

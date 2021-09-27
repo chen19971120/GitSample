@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import com.appraisal_case.model.Appraisal_CaseVO;
 
 public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 	String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -43,7 +46,10 @@ public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -73,7 +79,11 @@ public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+
 		} finally {
 			if (con != null) {
 				try {
@@ -101,7 +111,11 @@ public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+
 		} finally {
 			if (con != null) {
 				try {
@@ -136,7 +150,11 @@ public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+
 		} finally {
 			if (con != null) {
 				try {
@@ -173,7 +191,11 @@ public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+
 		} finally {
 			if (con != null) {
 				try {
@@ -184,6 +206,12 @@ public class Appraisal_ClassJDBCDAO implements I_Appraisal_ClassDAO{
 			}
 		}
 		return appraisal_caseList;
+	}
+
+	@Override
+	public Set<Appraisal_CaseVO> getA_CaseByA_Class(Integer acl_no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 //	public static void main(String[] args) {

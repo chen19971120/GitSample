@@ -1,13 +1,16 @@
 package com.appraisal_class.model;
 
 import java.util.List;
+import java.util.Set;
+
+import com.appraisal_case.model.Appraisal_CaseVO;
 
 public class Appraisal_ClassService {
 
 	private I_Appraisal_ClassDAO dao;
 
 	public Appraisal_ClassService() {
-		dao = new Appraisal_ClassJDBCDAO();
+		dao = new Appraisal_ClassDAO();
 	}
 
 	public Appraisal_ClassVO addA_Class(String acl_id) {
@@ -41,5 +44,8 @@ public class Appraisal_ClassService {
 
 	public List<Appraisal_ClassVO> getAll() {
 		return dao.getAll();
+	}
+	public Set<Appraisal_CaseVO> getA_CaseByA_Class(Integer acl_no){
+		return dao.getA_CaseByA_Class(acl_no);
 	}
 }

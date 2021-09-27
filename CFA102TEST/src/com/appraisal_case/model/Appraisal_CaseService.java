@@ -2,10 +2,18 @@ package com.appraisal_case.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.appraisal_case_images.model.Appraisal_Case_ImagesVO;
 
 public class Appraisal_CaseService {
 
 	private I_Appraisal_CaseDAO dao;
+
+	public Appraisal_CaseService() {
+		dao = new Appraisal_CaseDAO();
+	}
 
 	public Appraisal_CaseVO addA_Case(Integer mem_no, String aca_itm_id, Integer acl_no, String aca_itm_spec,
 			Timestamp aca_date, String aca_itm_mode, Integer aca_first_p, Timestamp aca_recpt_date, Integer aca_final_p,
@@ -71,5 +79,9 @@ public class Appraisal_CaseService {
 
 	public List<Appraisal_CaseVO> getAll() {
 		return dao.getAll();
+	}
+
+	public List<Appraisal_CaseVO> getAll(Map<String, String[]> map) {
+		return dao.getAll(map);
 	}
 }
