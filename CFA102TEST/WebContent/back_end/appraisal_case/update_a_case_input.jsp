@@ -12,7 +12,7 @@
 <title>估價案件資料修改</title>
 
 </head>
-<body>
+<body onload="hiddenMode()">
 
 	<table>
 		<tr><td><h3>估價案件資料修改</h3>
@@ -31,7 +31,7 @@
 		</ul>
 	</c:if>
 
-  <FORM METHOD="post" ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do">
+  <FORM METHOD="post" ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do" onsubmit="this.querySelectorAll('option').forEach(i => i.disabled = false)">
         <table>
             <tr>
                 <td>估價案件編號:<font color=red><b>*</b></font>
@@ -68,15 +68,15 @@
             </tr>
             <tr>
                 <td>案見狀態:</td>
-                <td><select size="1" name="aca_itm_mode" id="selectMode">
+                <td><select size="1" name="aca_itm_mode" id="selectMode" onchange="showDate()">
                         <option value="審核評估中" ${(appraisalCaseVO.aca_itm_mode=="審核評估中" )?'selected':'' }>審核評估中
                         <option value="提供報價" ${(appraisalCaseVO.aca_itm_mode=="提供報價" )?'selected':'' }>提供報價
                         <option value="提供成交價" ${(appraisalCaseVO.aca_itm_mode=="提供成交價" )?'selected':'' }>提供成交價
                         <option value="已收取商品" ${(appraisalCaseVO.aca_itm_mode=="已收取商品" )?'selected':'' }>已收取商品
                         <option value="確認付款" ${(appraisalCaseVO.aca_itm_mode=="確認付款" )?'selected':'' }>確認付款
                         <option value="商品退回" ${(appraisalCaseVO.aca_itm_mode=="商品退回" )?'selected':'' }>商品退回
-                        <option value="完成案件" ${(appraisalCaseVO.aca_itm_mode=="完成案件" )?'selected':'' }>完成案件
-                        <option value="取消案件" ${(appraisalCaseVO.aca_itm_mode=="取消案件" )?'selected':'' }>取消案件
+                        <option id="caseMode" value="完成案件" ${(appraisalCaseVO.aca_itm_mode=="完成案件" )?'selected':'' } >完成案件
+                        <option id="caseMode" value="取消案件" ${(appraisalCaseVO.aca_itm_mode=="取消案件" )?'selected':'' }>取消案件
                     </select></td>
             </tr>
             <tr>
@@ -105,7 +105,6 @@
                 <td>付款方式:</td>
                 <td><select size="1" name="aca_pay" >
                         <option value="現金" ${(appraisalCaseVO.aca_pay=="現金" )?'selected':'' }>現金
-                        <option value="信用卡" ${(appraisalCaseVO.aca_pay=="信用卡" )?'selected':'' }>信用卡
                         <option value="轉帳" ${(appraisalCaseVO.aca_pay=="轉帳" )?'selected':'' }>轉帳
                     </select></td>
             </tr>
@@ -126,22 +125,13 @@
                 <td><input type="text" name="aca_adrs" value="<%=appraisalCaseVO.getAca_adrs()%>"></td>
             </tr>
 	        
-<%-- 	        <c:forEach var="appraisalCaseImagesVO" items="${appraisalCaseImagesVO }"> --%>
-<!-- 			<tr> -->
-<!-- 	    	<td>估價圖片</td> -->
-<!-- 	    	<td> -->
-<!-- 	    		<input type="file" name="aci_img1" accept="image/*" onchange="loadFile1(event)"><br>	 -->
-<%-- 		    	<img id="imgDisplay1" width="100" height="100" src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}"> --%>
-<!-- 			</td> -->
-<!-- 	  		</tr> -->
-<%-- 		    </c:forEach> --%>
         </table>
         <br>
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="aca_no" value="<%=appraisalCaseVO.getAca_no()%>">
         <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->
         <input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>"><!--只用於:istAllEmp.jsp-->
-        <input type="submit" value="送出修改" id="submit">
+        <button type="submit" value="送出修改" id="submitFinish">送出修改</button>
     </FORM>
     <button id="cancelCase" onclick="cancelCase()">取消案件</button>
     <button id="finishCase" onclick="finishCase()">完成案件</button>
@@ -218,60 +208,95 @@ $(function(){
 		  value:'<%=(appraisalCaseVO.getAca_comp_date()==null)?"":appraisalCaseVO.getAca_comp_date()%>'
 	 });
 });
-//圖片預覽
-var loadFile1 = function(event) {
-var output = document.getElementById('imgDisplay1');
-output.src = URL.createObjectURL(event.target.files[0]);
-output.onload = function() {
-	URL.revokeObjectURL(output.src) // free memory
-	}
-};
+
 </script>
 
-
-
-    <script>
-        var selectMode = document.getElementById("selectMode");
-
-        function cancelCase() {
-            if (confirm("確定取消估價案件嗎?")) {
-                //隱藏取消按鈕
-                document.getElementById("cancelCase").style.display = 'none';
-                var cancelDate = document.querySelectorAll("#cancelDate");
-                for (var i = 0; i < cancelDate.length; i++) {
-                    cancelDate[i].style.display = 'table-row';
-                }
-                selectMode[7].selected = true;
+<script>
+   var selectMode = document.getElementById("selectMode");
+   var input = document.getElementsByTagName("input");
+   var textarea = document.getElementsByTagName("textarea");
+   var option = document.getElementsByTagName("option");
+   var submitFinish = document.getElementById("submitFinish");
+   
+   function cancelCase() {//按下取消案件時
+        if (confirm("確定取消估價案件嗎?")) {
+           //隱藏取消按鈕
+           document.getElementById("cancelCase").style.display = 'none';
+           var cancelDate = document.querySelectorAll("#cancelDate");
+           for (var i = 0; i < cancelDate.length; i++) {
+                cancelDate[i].style.display = 'table-row';
+           }
+               	selectMode[7].selected = true;
                 alert("估價案件已取消~");
             } else {
                 alert("估價案件尚未取消");
             }
         }
 
-        function finishCase() {
-            if (confirm("確定完成估價案件嗎")) {
-                document.getElementById("cancelCase").style.display = 'none';
-                selectMode[6].selected = true;
+	function finishCase() {//按下完成案件時
+        if (confirm("確定完成估價案件嗎")) {
+            document.getElementById("cancelCase").style.display = 'none';
+            selectMode[6].selected = true;
                 
-                var finishCase = document.getElementById("finishCase");
-                finishCase.innerText = "已完成估價案件"
-                finishCase.disabled = true;
-                //完成日期自動填入
-                var d = new Date();
-                d = new Date(d.getTime() - 3000000);
-                var date_format_str = d.getFullYear().toString() + "-" + ((d.getMonth() + 1).toString().length == 2 ? (d
-                        .getMonth() + 1).toString() : "0" + (d.getMonth() + 1).toString()) + "-" + (d.getDate()
-                        .toString().length == 2 ? d.getDate().toString() : "0" + d.getDate().toString()) + " " + (d
-                        .getHours().toString().length == 2 ? d.getHours().toString() : "0" + d.getHours().toString()) +
-                    ":" + ((parseInt(d.getMinutes() / 5) * 5).toString().length == 2 ? (parseInt(d.getMinutes() / 5) *
-                        5).toString() : "0" + (parseInt(d.getMinutes() / 5) * 5).toString()) + ":00";
+            document.getElementById("finishCase").style.display = 'none';
+            //送出修改更改為案件完成確認送出    
+            submitFinish.innerText = "案件完成確認送出";
 
-                let compDate = document.getElementById("aca_comp_date").value = date_format_str;
-                alert("估價案件已完成~");
-            } else {
-                alert("估價案件尚未完成~");
+            //估價內容不能修改
+            textarea[0].readOnly=true;
+            textarea[0].style.backgroundColor = "darkgray";
+            //估價input欄位不能修改
+    		for(var i = 0; i < input.length; i++){
+	    		input[i].readOnly = true;
+	    		input[i].style.backgroundColor = "darkgray";
+    		}
+            //select選項都變隱藏 限Chrome瀏覽器使用
+            for(var i = 0; i<option.length;i++){
+            	option[i].style.display = 'none';
             }
-        }
-    </script>
+            //完成日期自動填入
+            var d = new Date();
+            d = new Date(d.getTime() - 3000000);
+            var date_format_str = d.getFullYear().toString() + "-" + ((d.getMonth() + 1).toString().length == 2 ? (d.getMonth() + 1).toString() : "0" + (d.getMonth() + 1).toString()) + "-" + (d.getDate().toString().length == 2 ? d.getDate().toString() : "0" + d.getDate().toString()) + " " + (d.getHours().toString().length == 2 ? d.getHours().toString() : "0" + d.getHours().toString()) + ":" + ((parseInt(d.getMinutes() / 5) * 5).toString().length == 2 ? (parseInt(d.getMinutes() / 5) * 5).toString() : "0" + (parseInt(d.getMinutes() / 5) * 5).toString()) + ":00";
 
+            var compDate = document.getElementById("aca_comp_date").value = date_format_str;
+            alert("估價案件已完成~");
+		} else {
+            alert("估價案件尚未完成~");
+        }
+   }
+        
+     function showDate(){
+        //選到商品退回顯示出貨日期
+        if(selectMode[5].selected == true){
+			document.getElementById("cancelDate").style.display = 'table-row';		
+        }
+     }
+    function hiddenMode(){ //載入頁面
+    //下拉式選單完成案件取消案件
+    	var caseMode = document.querySelectorAll("#caseMode");
+    	for(var i = 0; i < caseMode.length;i++){
+    		caseMode[i].style.display = 'none';
+    	}
+    	if(selectMode[7].selected == true){
+    	//取消案件為預設
+    	document.getElementById("cancelCase").style.display = 'none';
+    	var cancelDate = document.querySelectorAll("#cancelDate");
+        	for (var i = 0; i < cancelDate.length; i++) {
+            	cancelDate[i].style.display = 'table-row';
+        	}
+    	}else if(selectMode[5].selected == true){
+    		var cancelDate = document.querySelectorAll("#cancelDate");
+            for (var i = 0; i < cancelDate.length; i++) {
+            	cancelDate[i].style.display = 'table-row';
+            }
+    	}else if(selectMode[6].selected == true){
+    		document.getElementById("cancelCase").style.display = 'none';
+    		document.getElementById("finishCase").style.display = 'none';
+    		var txt = "案件已完成無法修改";
+    		submitFinish.innerText = txt;
+    		submitFinish.disabled = true;
+    	}	
+    }
+    </script>
 </html>

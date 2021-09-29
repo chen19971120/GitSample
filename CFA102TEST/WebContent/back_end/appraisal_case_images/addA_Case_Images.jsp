@@ -50,28 +50,27 @@
 		<table>
 			<tr>
 				<td width="120px">估價案件編號:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="aca_no" size="45"
-				></td>
+				<td><input type="text" name="aca_no" size="45"></td>
 			</tr>
 			<tr>
 				<td width="120px">估價商品圖片:</td>
 				<td>
 					<input type="file" name="aci_img1" accept="image/*" onchange="loadFile1(event)">
- 					<img id="imgDisplay1" width="80px"height="80px">
+ 					<img id="imgDisplay1" width="120"height="120">
 				</td>
 			</tr>
 			<tr>
 				<td width="120px">估價商品圖片:</td>
 				<td>
 					<input type="file" name="aci_img2" accept="image/*" onchange="loadFile2(event)">
- 					<img id="imgDisplay2" width="80px"height="80px">
+ 					<img id="imgDisplay2" width="120"height="120">
 				</td>
 			</tr>
 			<tr>
 				<td width="120px">估價商品圖片:</td>
 				<td>
 					<input type="file" name="aci_img3" accept="image/*" onchange="loadFile3(event)">
- 					<img id="imgDisplay3" width="80px"height="80px">
+ 					<img id="imgDisplay3" width="120"height="120">
 				</td>
 			</tr>
 		</table>

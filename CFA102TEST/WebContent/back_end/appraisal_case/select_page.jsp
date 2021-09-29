@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-Appraisal_CaseVO appraisalCaseVO = new Appraisal_CaseVO();
+	Appraisal_CaseVO appraisalCaseVO = new Appraisal_CaseVO();
 %>
 <!DOCTYPE html>
 <html>
@@ -105,7 +105,6 @@ Appraisal_CaseVO appraisalCaseVO = new Appraisal_CaseVO();
 				<select size="1" name="aca_pay">
 					<option value=" "selected>
 					<option value="現金">現金
-					<option value="信用卡">信用卡
 					<option value="轉帳">轉帳
 				</select><br>
 				

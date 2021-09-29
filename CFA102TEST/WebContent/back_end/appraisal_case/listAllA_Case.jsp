@@ -15,31 +15,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--*******************	Start Include CSS File ******************* -->
+<%@ include file="../back_include_page/CSS_link.jsp"%>
+<!--*******************	End Include CSS File ******************* -->
 <meta charset="UTF-8">
-<title>所有估價案件</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
-<style>
-table {
-	
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-</style>
-
+<title>YSM-3C 後台管理</title>
+<link rel="icon" type="image/png" href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 </head>
 <body>
 
@@ -63,7 +44,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<table>
+	<table id="appraisalCase">
 		<tr>
 			<th>估價案件編號</th>
 			<th>會員編號</th>
@@ -75,8 +56,9 @@ th, td {
 			<th>付款方式</th>
 			<th>完成日期</th>
 			<th>運送方式</th>
-<!-- 			<th>修改</th> -->
+			<th>修改</th>
 			<th>查看詳情</th>
+			<th>查看圖片</th>
 		</tr>
 		<%@ include file="pages/page1.file" %> 
 		<c:forEach var="appraisalCaseVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -96,20 +78,27 @@ th, td {
 				<td>${appraisalCaseVO.aca_pay }</td>
 				<td><fmt:formatDate value="${appraisalCaseVO.aca_comp_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				<td>${appraisalCaseVO.aca_cod }</td>
-<!-- 				<td> -->
-<%-- 					<FORM METHOD="post"	ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do"style="margin-bottom: 0px;"> --%>
-<!-- 						<input type="submit" value="修改">  -->
-<%-- 						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}"> --%>
-<%-- 						<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
-<%-- 						<input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller--> --%>
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM> -->
-<!-- 				</td> -->
 				<td>
 					<FORM METHOD="post"	ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do"style="margin-bottom: 0px;">
-						<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}">
+						<input type="submit" value="修改"> 
+						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}">
+						<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+						<input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
+						<input type="hidden" name="action" value="getOne_For_Update">
+					</FORM>
+				</td>
+				<td>
+					<FORM METHOD="post"	ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do"style="margin-bottom: 0px;">
+						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}">
 						<input type="hidden" name="action" value="information">
 						<input type="button" value="查看詳情" onclick="presses(${appraisalCaseVO.aca_no})">
+					</FORM>
+				</td>
+				<td>
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do"style="margin-bottom: 0px;">
+						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}">
+						<input type="hidden" name="action" value="imagesInformation">
+						<input type="button" value="查看圖片" onclick="pressesImg(${appraisalCaseVO.aca_no})">
 					</FORM>
 				</td>
 			</tr>
@@ -118,6 +107,9 @@ th, td {
 	<script>
 		function presses(data){
 			window.open("<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do?aca_no=" + data + "&action=information","","height=750,width=500,left=65,top=157,resizable=yes,scrollbars=yes");
+		}
+		function pressesImg(data){
+			window.open("<%= request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aca_no=" + data + "&action=imagesInformation","","height=600,width=900,left=65,top=157,resizable=yes,scrollbars=yes");
 		}
 	</script>
 <%@ include file="pages/page2.file" %>

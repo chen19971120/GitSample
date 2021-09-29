@@ -39,7 +39,10 @@ public class Coupon_ListJDBCDAO implements I_Coupon_ListDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -69,7 +72,10 @@ public class Coupon_ListJDBCDAO implements I_Coupon_ListDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -99,7 +105,10 @@ public class Coupon_ListJDBCDAO implements I_Coupon_ListDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -135,7 +144,10 @@ public class Coupon_ListJDBCDAO implements I_Coupon_ListDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {
@@ -172,7 +184,10 @@ public class Coupon_ListJDBCDAO implements I_Coupon_ListDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException se) {
-			se.printStackTrace();
+//			se.printStackTrace();
+//			錯誤拋到前台
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 		} finally {
 			if (con != null) {
 				try {

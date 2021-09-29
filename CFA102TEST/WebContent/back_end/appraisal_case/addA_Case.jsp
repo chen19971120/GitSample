@@ -35,8 +35,7 @@
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post"
-		ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do">
+	<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do">
 		<table>
 			<tr>
 				<td>會員編號:<font color=red><b>*</b></font></td>
@@ -44,8 +43,7 @@
 			</tr>
 			<tr>
 				<td>估價商品名稱:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="aca_itm_id" size="45"
-					value="<%=(appraisalCaseVO == null) ? "電腦" : appraisalCaseVO.getAca_itm_id()%>"></td>
+				<td><input type="text" name="aca_itm_id" size="45"value="<%=(appraisalCaseVO == null) ? "電腦" : appraisalCaseVO.getAca_itm_id()%>"></td>
 			</tr>
 			<jsp:useBean id="appraisalClassSvc" scope="page" class="com.appraisal_class.model.Appraisal_ClassService" />
 			<tr>
@@ -104,7 +102,6 @@
 				<td>付款方式:</td>
 				<td><select size="1" name="aca_pay">
 					<option value="現金" selected>現金
-					<option value="信用卡">信用卡
 					<option value="轉帳">轉帳
 				</select></td>
 			</tr>
@@ -122,8 +119,7 @@
 			</tr>
 			<tr>
 				<td>配送地址:</td>
-				<td><input type="text" name="aca_adrs"
-					value="<%=(appraisalCaseVO == null) ? "桃園市中壢區復興路46號8樓之805" : appraisalCaseVO.getAca_adrs()%>"></td>
+				<td><input type="text" name="aca_adrs"value="<%=(appraisalCaseVO == null) ? "桃園市中壢區復興路46號8樓之805" : appraisalCaseVO.getAca_adrs()%>"></td>
 			</tr>
 
 		</table>
