@@ -276,10 +276,4 @@ public class Appraisal_Case_ImagesJDBCDAO implements I_Appraisal_Case_ImagesDAO 
 //			ie.printStackTrace();
 //		}
 //	}
-
-	@Override
-	public Appraisal_Case_ImagesVO getCase_Img(Integer aca_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

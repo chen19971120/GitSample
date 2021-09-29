@@ -205,10 +205,4 @@ public class Appraisal_Case_ImagesDAO implements I_Appraisal_Case_ImagesDAO {
 		}
 		return appraisal_case_imagesList;
 	}
-
-	@Override
-	public Appraisal_Case_ImagesVO getCase_Img(Integer aca_no) {
-		
-		return null;
-	}
 }
