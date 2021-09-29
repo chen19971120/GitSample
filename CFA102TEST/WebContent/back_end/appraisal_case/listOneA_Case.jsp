@@ -110,18 +110,9 @@
 				<td>配送地址:</td>
 				<td><input type="text" name="aca_adrs"value="<%=appraisalCaseVO.getAca_adrs()%>" disabled></td>
 			</tr>
-	    <c:forEach var="appraisalCaseImagesVO" items="${appraisalCaseImagesVO }">
-		<tr>
-    	<td>估價圖片</td>
-    	<td>
-	    		<img width="100" height="100" src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}&action=showIMG">
-		</td>
-  		</tr>
-	    </c:forEach>
-
 </table>
            <FORM METHOD="post" ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do"style="margin-bottom: 0px;">
-                <input type="submit" value="修改">
+                <button type="submit"value="修改" id="update">修改</button>
                 <input type="hidden" name="aca_no" value="${appraisalCaseVO.aca_no}">
                 <input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
                 <input type="hidden" name="action" value="getOne_For_Update">
@@ -131,11 +122,12 @@
 <script>
 	function hiddenUpdate(){
 		var selectMode = document.getElementById("selectMode");
-		var value =selectMode.option[selectedMode.selectedIndex].value;
-		alert(value);
-		
-		if()
+		var update = document.getElementById("update");
+		var txt = "案件已完成無法修改";
+		if(selectMode[6].selected==true){
+			update.innerText = txt;
+			update.disabled = true;
+		}
 	}
-	
 </script>
 </html>

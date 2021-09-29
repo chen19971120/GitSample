@@ -417,25 +417,6 @@ public class Appraisal_CaseServlet extends HttpServlet {
 			}
 		}
 
-		if ("information".equals(action)) {
-			try {
-				Integer aca_no = new Integer(req.getParameter("aca_no"));
-				Appraisal_CaseService appraisalCaseSvc = new Appraisal_CaseService();
-				Appraisal_CaseVO appraisalCaseVO = appraisalCaseSvc.getOneA_Case(aca_no);
-				req.setAttribute("appraisalCaseVO", appraisalCaseVO);
-				
-				Appraisal_Case_ImagesService appraisalCaseImagesSvc = new Appraisal_Case_ImagesService();
-				List<Appraisal_Case_ImagesVO> appraisalCaseImagesVO = appraisalCaseImagesSvc.getAll().stream().filter(i -> i.getAca_no().intValue() == aca_no.intValue()).collect(Collectors.toList());
-				req.setAttribute("appraisalCaseImagesVO", appraisalCaseImagesVO);
-
-				String url = "/back_end/appraisal_case/A_CaseInformation.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneA_Case.jsp
-				successView.forward(req, res);
-
-			} catch (Exception e) {
-				throw new ServletException(e);
-			}
-		}
 		if ("listA_Case_ByCompositeQuery".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -461,22 +442,21 @@ public class Appraisal_CaseServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		if("showIMG".equals(action)) {
-			res.setContentType("image/gif");
-			ServletOutputStream out = res.getOutputStream();
-//			圖片查詢
+		
+		if ("information".equals(action)) {
 			try {
-				Integer aci_no = new Integer(req.getParameter("aci_no"));
-				Appraisal_Case_ImagesService appraisalCaseImagesSvc = new Appraisal_Case_ImagesService();
-				byte[] imgArray = appraisalCaseImagesSvc.getOneA_Case_Image(aci_no).getAci_img();
-				out.write(imgArray);
-				out.close();
+				Integer aca_no = new Integer(req.getParameter("aca_no"));
+				
+				Appraisal_CaseService appraisalCaseSvc = new Appraisal_CaseService();
+				Appraisal_CaseVO appraisalCaseVO = appraisalCaseSvc.getOneA_Case(aca_no);
+				req.setAttribute("appraisalCaseVO", appraisalCaseVO);
+				
+				String url = "/back_end/appraisal_case/A_CaseInformation.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneA_Case.jsp
+				successView.forward(req, res);
+				
 			} catch (Exception e) {
-				InputStream in = getServletContext().getResourceAsStream("/back_end/appraisal_case_images/images/null2.jpg");
-				byte[] b = new byte[in.available()];
-				in.read(b);
-				out.write(b);
-				in.close();
+				throw new ServletException(e);
 			}
 		}
 		

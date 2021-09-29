@@ -3,14 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.appraisal_case.model.*"%>
 <%@ page import="com.appraisal_class.model.*"%>
-<%@ page import="com.appraisal_case_images.model.*" %>
 
 <%
 	Appraisal_CaseVO appraisalCaseVO = (Appraisal_CaseVO) request.getAttribute("appraisalCaseVO");
 %>
 
 <jsp:useBean id="appraisalClassSvc" scope="page" class="com.appraisal_class.model.Appraisal_ClassService" />
-<jsp:useBean id="appraisalCaseImages" scope="page" class="com.appraisal_case_images.model.Appraisal_Case_ImagesService" />
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +30,7 @@
     </tr>
     <tr>
         <td>估價商品名稱</td>
-        <td><input type="text" value="${appraisalCaseVO.aca_itm_id }" disabled></td>
+        <td>${appraisalCaseVO.aca_itm_id }</td>
     </tr>
     <tr>
         <td>估價類別</td>
@@ -90,15 +88,6 @@
         <td>配送地址</td>
         <td>${appraisalCaseVO.aca_adrs }</td>
     </tr>
-    <c:forEach var="appraisalCaseImagesVO" items="${appraisalCaseImagesVO }">
-	<tr>
-    	<td>估價圖片</td>
-    	<td>
-	    	<img width="100" height="100" src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}&action=showIMG">
-		</td>
-  	</tr>
-	</c:forEach>
-
     
 </table>
 </body>

@@ -14,7 +14,7 @@
 <title>部分查詢案件</title>
 </head>
 <body>
-<table id="table-1">
+<table id="appraisalCase">
 		<tr>
 			<td>
 				<h3>所有估價案件資料</h3>
@@ -34,7 +34,7 @@
 	</ul>
 </c:if>
 
-<table>
+<table id="appraisalCase">
 	<tr>
 		<th>估價案件編號</th>
 		<th>會員編號</th>
@@ -48,7 +48,7 @@
 		<th>運送方式</th>
 		<th>修改</th>
 		<th>查看詳情</th>
-<!-- 			<th>刪除</th> -->
+		<th>查看圖片</th>
 	</tr>
 	
 	<c:forEach var="appraisalCaseVO" items="${listCase_ByClass }">
@@ -82,15 +82,23 @@
 						<input type="button" value="查看詳情" onclick="presses(${appraisalCaseVO.aca_no})"> 
 					</FORM>
 				</td>
-<%-- 				<td><FORM METHOD="post"ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do"style="margin-bottom: 0px;"> --%>
-<%-- 				<input type="submit" value="刪除"><input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}"><input type="hidden" name="action" value="delete"> --%>
-<!-- 				</FORM></td> -->
+				<td>
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do"style="margin-bottom: 0px;">
+						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}">
+						<input type="hidden" name="action" value="imagesInformation">
+						<input type="button" value="查看圖片" onclick="pressesImg(${appraisalCaseVO.aca_no})">
+					</FORM>
+				</td>
+				
 			</tr>
 		</c:forEach>
-</table>
+	</table>
 	<script>
 		function presses(data){
 			window.open("<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do?aca_no=" + data + "&action=information","","height=750,width=500,left=65,top=157,resizable=yes,scrollbars=yes");
+		}
+		function pressesImg(data){
+			window.open("<%= request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aca_no=" + data + "&action=imagesInformation","","height=600,width=900,left=65,top=157,resizable=yes,scrollbars=yes");
 		}
 	</script>
 

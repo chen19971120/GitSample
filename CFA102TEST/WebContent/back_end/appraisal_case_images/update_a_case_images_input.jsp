@@ -46,7 +46,7 @@
 				<td>
 					<td>
 					<input type="file" name="aci_img" accept="image/*" onchange="loadFile(event)">
- 					<img id="imgDisplay" width="80px"height="80px"src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}">
+ 					<img id="imgDisplay" width="120"height="120"src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}&action=showIMG">
 				</td>
 			</tr>
 		</table>

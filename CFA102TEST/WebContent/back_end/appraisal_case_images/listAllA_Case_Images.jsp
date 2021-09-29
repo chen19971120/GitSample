@@ -40,8 +40,8 @@
 	</td></tr>
 </table>
 
-<c:if test="${not empty errorMsgs }">
-	<font style="color:red">請修正以下錯誤：</font>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -61,7 +61,7 @@
 		<tr ${(appraisalCaseImagesVO.aci_no==param.aci_no)?'bgcolor=#CCCCFF':''  }>
 			<td>${appraisalCaseImagesVO.aci_no}</td>
 			<td>${appraisalCaseImagesVO.aca_no}</td>
-			<td><img width="100" height="100" src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}"></td>
+			<td><img width="120" height="120" src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}&action=showIMG"></td>
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do" style="margin-bottom: 0px;">
 					<input type="submit" value="修改">
@@ -75,6 +75,8 @@
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do" style="margin-bottom: 0px;">
 					<input type="submit" value="刪除">
 					<input type="hidden" name="aci_no" value="${appraisalCaseImagesVO.aci_no}">
+					<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+			     	<input type="hidden" name="whichPage"	value="<%=whichPage%>"> 
 					<input type="hidden" name="action" value="delete">
 				</FORM>
 			</td>
