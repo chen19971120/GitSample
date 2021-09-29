@@ -8,17 +8,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--*******************	Start Include CSS File ******************* -->
+<%@ include file="../back_include_page/CSS_link.jsp"%>
+<!--*******************	End Include CSS File ******************* -->
 <meta charset="UTF-8">
-<title>估價案件資料修改</title>
+<title>YSM-3C 後台管理</title>
+<link rel="icon" type="image/png" href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 
 </head>
 <body onload="hiddenMode()">
 
-	<table>
-		<tr><td><h3>估價案件資料修改</h3>
-				<h4><a href="<%=request.getContextPath()%>/back_end/appraisal_case/select_page.jsp">回首頁</a></h4></td>
-		</tr>
-	</table>
+<div id="app">
+<!--*******************	Start Include sidebar File ******************* -->
+<%@ include file="../back_include_page/sidebar.jsp"%>
+<!--*******************	End Include sidebar File ******************* -->
+
+	<div id="main">
+		<h4>估價案件資料修改</h4><br>
+	<section class="section">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title"><a href="<%=request.getContextPath()%>/back_end/appraisal_case/select_page.jsp">返回管理估價案件</a></h3>
 
 	<h3>資料修改:</h3>
 
@@ -31,8 +41,8 @@
 		</ul>
 	</c:if>
 
-  <FORM METHOD="post" ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do" onsubmit="this.querySelectorAll('option').forEach(i => i.disabled = false)">
-        <table>
+        <div class="card-body">
+		<table class="table table-striped" id="table1">
             <tr>
                 <td>估價案件編號:<font color=red><b>*</b></font>
                 </td>
@@ -124,18 +134,28 @@
                 <td>配送地址:</td>
                 <td><input type="text" name="aca_adrs" value="<%=appraisalCaseVO.getAca_adrs()%>"></td>
             </tr>
-	        
         </table>
         <br>
-        <input type="hidden" name="action" value="update">
-        <input type="hidden" name="aca_no" value="<%=appraisalCaseVO.getAca_no()%>">
-        <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->
-        <input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>"><!--只用於:istAllEmp.jsp-->
-        <button type="submit" value="送出修改" id="submitFinish">送出修改</button>
-    </FORM>
-    <button id="cancelCase" onclick="cancelCase()">取消案件</button>
-    <button id="finishCase" onclick="finishCase()">完成案件</button>
-
+	 	<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do">
+	        <input type="hidden" name="action" value="update">
+	        <input type="hidden" name="aca_no" value="<%=appraisalCaseVO.getAca_no()%>">
+	        <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->
+	        <input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>"><!--只用於:istAllEmp.jsp-->
+	        <button type="submit" value="送出修改" class="btn btn-outline-secondary" id="submitFinish">送出修改</button>
+	    </FORM>
+	    <button id="cancelCase" class="btn btn-outline-secondary" onclick="cancelCase()">取消案件</button>
+	    <button id="finishCase" class="btn btn-outline-secondary" onclick="finishCase()">完成案件</button>
+    				</div>
+    			</div>
+    		</div>
+	    </section>
+    </div>
+</div>
+    
+	<!--*******************Start Include JS File******************* -->
+	<%@ include file="../back_include_page/JavaScript_Include.jsp"%>
+	<!--*******************End Include JS File******************* -->
+    
 </body>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back_end/appraisal_case/datetimepicker/jquery.datetimepicker.css" />

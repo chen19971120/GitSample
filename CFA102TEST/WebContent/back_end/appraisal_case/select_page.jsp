@@ -24,18 +24,11 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>管理估價案件</h3>
-                        <br>
+                        <h3>估價案件首頁</h3><br>
                     </div>
                 </div>
             </div>
-	<table id="table-1">
-		<tr>
-			<td><h3>估價案件首頁</h3></td>
-		</tr>
-	</table>
-
-	<h3>資料查詢：</h3>
+	<h4>資料查詢：</h4>
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
