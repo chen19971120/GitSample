@@ -34,7 +34,6 @@ public class Appraisal_Case_ImagesDAO implements I_Appraisal_Case_ImagesDAO {
 	private static final String DELETE_STMT = "DELETE FROM CFA102G1.APPRAISAL_CASE_IMAGES WHERE ACI_NO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM CFA102G1.APPRAISAL_CASE_IMAGES WHERE ACI_NO = ?";
 	private static final String GET_ALL = "SELECT * FROM CFA102G1.APPRAISAL_CASE_IMAGES";
-	private static final String GET_IMG = "SELECT * FROM CFA102G1.APPRAISAL_CASE_IMAGES where ACA_NO=? order by ACI_NO;";
 
 	@Override
 	public Appraisal_Case_ImagesVO insert(Appraisal_Case_ImagesVO appraisal_Case_ImagesVO) {
