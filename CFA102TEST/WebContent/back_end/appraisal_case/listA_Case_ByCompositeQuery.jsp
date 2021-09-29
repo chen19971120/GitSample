@@ -17,24 +17,6 @@
 <title>YSM-3C 後台管理</title>
 <link rel="icon" type="image/png" href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 
-<style>
-table {
-	width: 1265px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-</style>
-
 </head>
 <body bgcolor='white'>
 
@@ -44,13 +26,7 @@ th, td {
 <!--*******************	End Include sidebar File ******************* -->
 
 	<div id="main">
-		<div class="page-title">
-			<div class="row">
-				<div class="col-12 col-md-6 order-md-1 order-last">
-					<h4><a href="<%=request.getContextPath()%>/back_end/appraisal_case/select_page.jsp">返回管理估價案件</a></h4><br>
-				</div>
-			</div>
-		</div>
+		<h4>估價案件資料</h4><br>
 
 			<%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -61,13 +37,10 @@ th, td {
 </c:forEach>
 </ul>
 </c:if>
-
 		<section class="section">
 			<div class="card">
 				<div class="card-header">
-					<h3>所有估價案件資料</h3>
-				</div>
-
+					<h3 class="card-title"><a href="<%=request.getContextPath()%>/back_end/appraisal_case/select_page.jsp">返回管理估價案件</a></h3>
 				<div class="card-body">
 					<table class="table table-striped" id="table1">
 						<thead>
@@ -89,7 +62,7 @@ th, td {
 						</thead>
 						<tbody>
 							<c:forEach var="appraisalCaseVO" items="${listA_Case_ByCompositeQuery }">
-							<tr align='center' valign='middle' ${(appraisalCaseVO.aca_no==param.aca_no)?'bgcolor=#CCCCFF':'' }>
+							<tr>
 								<td>${appraisalCaseVO.aca_no }</td>
 								<td>${appraisalCaseVO.mem_no }</td>
 								<td>${appraisalCaseVO.aca_itm_id }</td>
@@ -130,6 +103,7 @@ th, td {
 							</c:forEach>
 						</tbody>
 					</table>
+					</div>
 				</div>
 			</div>
 		</section>

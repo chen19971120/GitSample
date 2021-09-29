@@ -7,27 +7,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--*******************	Start Include CSS File ******************* -->
+<%@ include file="../back_include_page/CSS_link.jsp"%>
+<!--*******************	End Include CSS File ******************* -->
 <meta charset="UTF-8">
-<title>所有估價照片 - A_Case_Images.jsp</title>
+<title>估價案件圖片</title>
+<link rel="icon" type="image/png" href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<style>
-  table {
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
 </head>
 <body>
-
+<section class="section">
+	<div class="card">
+		<div class="card-body">
 <c:if test="${not empty errorMsgs }">
 	<font style="color:red">請修正以下錯誤：</font>
 	<ul>
@@ -36,7 +27,7 @@
 		</c:forEach>
 	</ul>
 </c:if>
-<table>
+<table class="table table-striped" id="table1">
 
 	<c:forEach var="appraisalCaseImagesVO" items="${appraisalCaseImagesVO}">
 		<tr>
@@ -67,6 +58,12 @@
 			</td>
 		</tr>
 </table>
+</div>
+</div>
+</section>
+<!--*******************Start Include JS File******************* -->
+<%@ include file="../back_include_page/JavaScript_Include.jsp"%>
+<!--*******************End Include JS File******************* -->
 </body>
 <script>
 $("#progressbarTWInput").change(function(){

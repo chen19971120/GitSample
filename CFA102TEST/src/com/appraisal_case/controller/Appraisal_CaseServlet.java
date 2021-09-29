@@ -158,7 +158,6 @@ public class Appraisal_CaseServlet extends HttpServlet {
 
 				// 案件狀態
 				String aca_itm_mode = req.getParameter("aca_itm_mode");
-				System.out.println(aca_itm_mode);
 
 				// 報價
 				Integer aca_first_p = null;
@@ -214,11 +213,6 @@ public class Appraisal_CaseServlet extends HttpServlet {
 				// 完成日期，可先不給值
 				Timestamp aca_comp_date = null;
 				try {
-					if("完成案件".equals(aca_itm_mode)) {
-						aca_comp_date = new Timestamp(System.currentTimeMillis());
-					}else {
-						throw new IllegalArgumentException();
-					}
 					aca_comp_date = Timestamp.valueOf(req.getParameter("aca_comp_date").trim());
 				} catch (IllegalArgumentException e) {
 						aca_comp_date = null;
@@ -270,11 +264,14 @@ public class Appraisal_CaseServlet extends HttpServlet {
 				if (requestURL.equals("/back_end/appraisal_class/listCase_ByClass.jsp")|| requestURL.equals("/back_end/appraisal_class/listAllA_Class.jsp")) {
 					req.setAttribute("listCase_ByClass", appraisalClassSvc.getA_CaseByA_Class(acl_no));
 				}
-				else if(requestURL.equals("/back_end/appraisal_case/listOneA_Case.jsp")||requestURL.equals("/back_end/appraisal_case/A_CaseInformation.jsp")) {
+				else if(requestURL.equals("/back_end/appraisal_case/listOneA_Case.jsp")) {
 					req.setAttribute("appraisalCaseVO", appraisalCaseVO);
 				}
+				else if(requestURL.equals("/back_end/appraisal_case/listA_Case_ByCompositeQuery.jsp")) {
+					List<Appraisal_CaseVO> list = appraisalCaseSvc.getAll().stream().filter(i -> i.getAca_no().intValue() ==aca_no.intValue()).collect(Collectors.toList());
+					req.setAttribute("listA_Case_ByCompositeQuery", list);
+				}
 				String url = requestURL;
-				System.out.println(url);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneA_Case.jsp
 				successView.forward(req, res);
 

@@ -13,13 +13,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--*******************	Start Include CSS File ******************* -->
+<%@ include file="../back_include_page/CSS_link.jsp"%>
+<!--*******************	End Include CSS File ******************* -->
 <meta charset="UTF-8">
 <title>︳基ン戈</title>
+<link rel="icon" type="image/png" href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 
 </head>
 <body>
-
-<table>
+<section class="section">
+	<div class="card">
+		<div class="card-body">
+	<table class="table table-striped" id="table1">
     <tr>
         <td>︳基ン絪腹</td>
         <td>${appraisalCaseVO.aca_no }</td>
@@ -35,9 +41,8 @@
     <tr>
         <td>︳基摸</td>
         <td>
-            <!-- 					琩高︳基摸嘿 -->
+            <!--琩高︳基摸嘿 -->
             ${appraisalClassSvc.getOneA_Class(appraisalCaseVO.acl_no).acl_id }
-
         </td>
     </tr>
     <tr>
@@ -90,5 +95,11 @@
     </tr>
     
 </table>
+</div>
+</div>
+</section>
+<!--*******************Start Include JS File******************* -->
+<%@ include file="../back_include_page/JavaScript_Include.jsp"%>
+<!--*******************End Include JS File******************* -->
 </body>
 </html>
