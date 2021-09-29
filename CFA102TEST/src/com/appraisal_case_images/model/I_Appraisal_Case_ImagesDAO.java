@@ -9,5 +9,4 @@ public interface I_Appraisal_Case_ImagesDAO {
 	public void delete(Integer aci_no);
 	public Appraisal_Case_ImagesVO findByPK(Integer aci_no);
 	public List<Appraisal_Case_ImagesVO> getAll();
-	
 }

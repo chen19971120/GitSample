@@ -42,8 +42,8 @@
 				<div class="card-header">
 					<h3 class="card-title"><a href="<%=request.getContextPath()%>/back_end/appraisal_case/select_page.jsp">返回管理估價案件</a></h3>
 				<div class="card-body">
-					<table class="table table-striped" id="table1">
-					<thead>
+	<table class="table table-striped" id="table1">
+		<thead>
 		<tr>
 			<th>估價類別編號</th>
 			<th>估價類別名稱</th>

@@ -113,11 +113,7 @@
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="component-alert.html">管理估價案件</a>
-                            </li>
-                            
-                            <li class="submenu-item ">
-                                <a href="component-alert.html">回收重新上架</a>
+                                <a href="<%=request.getContextPath()%>/back_end/appraisal_case/select_page.jsp">管理估價案件</a>
                             </li>
                         </ul>
                     </li>                    
