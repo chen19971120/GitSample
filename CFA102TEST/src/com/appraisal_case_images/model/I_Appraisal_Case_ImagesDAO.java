@@ -10,5 +10,4 @@ public interface I_Appraisal_Case_ImagesDAO {
 	public Appraisal_Case_ImagesVO findByPK(Integer aci_no);
 	public List<Appraisal_Case_ImagesVO> getAll();
 	
-	public Appraisal_Case_ImagesVO getCase_Img(Integer aca_no);
 }

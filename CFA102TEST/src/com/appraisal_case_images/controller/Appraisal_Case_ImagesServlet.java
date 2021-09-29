@@ -151,19 +151,11 @@ public class Appraisal_Case_ImagesServlet extends HttpServlet {
 			res.setContentType("image/gif");
 			ServletOutputStream out = res.getOutputStream();
 //			圖片查詢
-			try {
-				Integer aci_no = new Integer(req.getParameter("aci_no"));
-				Appraisal_Case_ImagesService appraisalCaseImagesSvc = new Appraisal_Case_ImagesService();
-				byte[] imgArray = appraisalCaseImagesSvc.getOneA_Case_Image(aci_no).getAci_img();
-				out.write(imgArray);
-				out.close();
-			} catch (Exception e) {
-				InputStream in = getServletContext().getResourceAsStream("/back_end/appraisal_case_images/images/null2.jpg");
-				byte[] b = new byte[in.available()];
-				in.read(b);
-				out.write(b);
-				in.close();
-			}
+			Integer aci_no = new Integer(req.getParameter("aci_no"));
+			Appraisal_Case_ImagesService appraisalCaseImagesSvc = new Appraisal_Case_ImagesService();
+			byte[] imgArray = appraisalCaseImagesSvc.getOneA_Case_Image(aci_no).getAci_img();
+			out.write(imgArray);
+			out.close();
 		}
 		
 		if("imagesInformation".equals(action)) {
