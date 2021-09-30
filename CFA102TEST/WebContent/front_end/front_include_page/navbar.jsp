@@ -43,7 +43,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">回收估價</a>
+                                    <a href="<%=request.getContextPath()%>/front_end/appraisal_case/appraisalCase.jsp" class="nav-link">回收估價</a>
                                 </li>
 
                                 <li class="nav-item">
