@@ -9,71 +9,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>優惠券資訊資料新增</title>
+	<!--*******************	
+	Start Include CSS File  
+	******************* -->
+	<%@ include file="../back_include_page/CSS_link.jsp"%>
+	<!--*******************	
+	End Include CSS File  
+	******************* -->
+	<meta charset="UTF-8">
+	<title>YSM-3C 後台管理</title>
+	<link rel="icon" type="image/png"
+	href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 
 </head>
 <body>
 
-	<table>
-		<tr>
-			<td><h3>優惠券資訊資料新增</h3></td>
-			<td><h4>
-					<a href="<%=request.getContextPath()%>/back_end/coupon_information/select_page.jsp">回首頁</a>
-				</h4></td>
-		</tr>
-	</table>
+	<div id="app">
+		<!--*******************	
+		Start Include sidebar File  
+		******************* -->
+		<%@ include file="../back_include_page/sidebar.jsp"%>
+		<!--*******************	
+		End Include sidebar File
+		******************* -->
+		<div id="main">
 
-	<h3>資料新增:</h3>
 
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-
-	<FORM METHOD="post"
-		ACTION="<%= request.getContextPath()%>/back_end/coupon_information/coupon_information.do">
-		<table>
-			<tr>
-				<td>優惠券名稱:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="ci_name" size="45"
-					value="<%=(couponInformaionVO == null) ? "消費滿" : couponInformaionVO.getCi_name()%>"></td>
-			</tr>
-			<tr>
-				<td>編碼:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="ci_code" size="45"
-					value="<%=(couponInformaionVO == null) ? "ABC490" : couponInformaionVO.getCi_code()%>"></td>
-			</tr>
-			<tr>
-				<td>優惠券開始時間:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="ci_start_time" id="start_dateTime"></td>
-			</tr>
-			<tr>
-				<td>優惠券結束時間:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="ci_end_time" id="end_dateTime"></td>
-			</tr>
-			<tr>
-				<td>優惠券促銷折扣:<font color=red><b>*</b></font></td>
-				<td><input type="text" name="discount"size="45"></td>
-			</tr>
-			<tr>
-				<td>優惠券內容:<font color=red><b>*</b></font></td>
-				<td><textarea rows="5" name="ci_content"></textarea></td>
-			</tr>
-
-		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
-	</FORM>
+			<table>
+				<tr>
+					<td><h3>優惠券資訊資料新增</h3></td>
+					<td><h4>
+							<a href="<%=request.getContextPath()%>/back_end/coupon_information/select_page.jsp">回首頁</a>
+						</h4></td>
+				</tr>
+			</table>
+		
+			<h3>資料新增:</h3>
+		
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		
+			<FORM METHOD="post"
+				ACTION="<%= request.getContextPath()%>/back_end/coupon_information/coupon_information.do">
+				<table>
+					<tr>
+						<td>優惠券名稱:<font color=red><b>*</b></font></td>
+						<td><input type="text" name="ci_name" size="45"
+							value="<%=(couponInformaionVO == null) ? " " : couponInformaionVO.getCi_name()%>"></td>
+					</tr>
+					<tr>
+						<td>編碼:<font color=red><b>*</b></font></td>
+						<td><input type="text" name="ci_code" size="45"
+							value="<%=(couponInformaionVO == null) ? " " : couponInformaionVO.getCi_code()%>"></td>
+					</tr>
+					<tr>
+						<td>優惠券開始時間:<font color=red><b>*</b></font></td>
+						<td><input type="text" name="ci_start_time" id="start_dateTime"></td>
+					</tr>
+					<tr>
+						<td>優惠券結束時間:<font color=red><b>*</b></font></td>
+						<td><input type="text" name="ci_end_time" id="end_dateTime"></td>
+					</tr>
+					<tr>
+						<td>優惠券促銷折扣:<font color=red><b>*</b></font></td>
+						<td><input type="text" name="discount"size="45"></td>
+					</tr>
+					<tr>
+						<td>優惠券內容:<font color=red><b>*</b></font></td>
+						<td><textarea rows="5" name="ci_content"></textarea></td>
+					</tr>
+		
+				</table>
+				<br> 
+				<input type="hidden" name="action" value="insert"> 
+				<input type="submit" class="btn btn-secondary" value="送出新增">
+			</FORM>
+	
+			</div> <!--id="main"-->
+	</div> <!--id="app"-->
+	
+		<!--*******************
+		Start Include JS File  
+		******************* -->
+		<%@ include file="../back_include_page/JavaScript_Include.jsp"%>
+		<!--*******************	
+		End Include JS File  
+		******************* -->
 
 </body>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back_end/coupon_information/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back_end/coupon_information/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back_end/coupon_information/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {

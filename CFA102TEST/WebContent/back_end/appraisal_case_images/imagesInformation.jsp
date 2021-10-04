@@ -16,6 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
+
 </head>
 <body>
 <section class="section">
@@ -51,9 +52,9 @@
 			<td colspan="5">
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do" style="margin-bottom: 0px;" enctype="multipart/form-data">
    				<div class="mb-3">
-                	<label for="formFile" class="form-label">新增估價圖片</label>
-                	<input class="form-control" type="file" name="aci_img" accept="image/*" id="progressbarTWInput" multiple>
-   					<div id="preview_progressbarTW_imgs"></div>
+                <label for="formFile" class="form-label">新增估價圖片</label>
+                <input class="form-control" type="file" name="aci_img" accept="image/*" id="progressbarTWInput" multiple>
+   				<div id="preview_progressbarTW_imgs"></div>
               	</div>
 				<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
 				<input type="hidden" name="aca_no" value="${aca_no}">

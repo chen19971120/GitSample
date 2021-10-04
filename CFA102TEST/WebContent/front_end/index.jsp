@@ -5,6 +5,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.rentalClass.model.*"%>
 <%@ page import="com.productReviews.model.*"%>
+<%@ page import="com.sec_product_inform.model.*"%>
+<%@ page import=" java.text.DecimalFormat"%>
+<%@ page import=" java.util.stream.Collectors"%>
+
 <%
 
 	RentalClassService rcSvc = new RentalClassService(); 
@@ -12,6 +16,17 @@
 	pageContext.setAttribute("list",list);
 			
 	ProductReviewsService prSvc = new ProductReviewsService();
+	
+// 	二手商品顯示>>>>
+	ProductInformService productInformSvc = new ProductInformService();
+	List<ProductInformVO> productInformVOs = productInformSvc.getAll()
+															 .stream()
+															 .filter(i -> i.getSpi_stock().intValue() > 0)
+															 .filter(i -> i.getSpi_sta().equals("上架"))
+															 .collect(Collectors.toList());
+	
+	
+//  <<<<二手商品顯示
 %>
 
 <!DOCTYPE html>
@@ -141,25 +156,24 @@
 							<!-- Start 顯示單個商品 -->
 							<%
 								for (int i = 0; i < 8; i++) {
+									ProductInformVO productInformVO = productInformVOs.get(i);
 							%>
 							<div class="col-lg-3 col-sm-6">
 								<div class="single-bestsellers-products">
 									<div class="bestsellers-products-image">
-										<a href="products-details.html"> <img
-											src="front_CSS_JS/assets/img/bestsellers-products/bestsellers-products-4.jpg"
-											alt="image">
-										</a>
-										<ul class="bestsellers-action">
-											<li><a href="#"> <i class="flaticon-shopping-cart"></i>
-											</a></li>
-										</ul>
+										<a href="<%=request.getContextPath()%>/secProductInfo/ProductInfo.do?spi_no=<%=productInformVO.getSpi_no() %>&action=showProductDetail">
+											<img src="<%=request.getContextPath()%>/secProductImg/ProductImg.do?spi_no=<%=productInformVO.getSpi_no() %>&action=showShopImage" alt="image" 
+											style="width:250px;height:250px;">
+                                		</a>
 									</div>
 
 									<div class="bestsellers-products-content">
 										<h3>
-											<a href="products-details.html">Wireless Mouse</a>
+											<a href="<%=request.getContextPath()%>/secProductInfo/ProductInfo.do?spi_no=<%=productInformVO.getSpi_no() %>&action=showProductDetail">
+												<%=productInformVO.getSpi_name() %>
+											</a>
 										</h3>
-										<span>$75.00</span>
+										<span>$<%=new DecimalFormat(",###").format(productInformVO.getSpi_pri())%></span>
 									</div>
 								</div>
 							</div>
