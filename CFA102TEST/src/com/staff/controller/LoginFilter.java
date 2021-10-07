@@ -41,7 +41,7 @@ public class LoginFilter implements Filter{
 		if(staffVO == null) {
 			//session.setAttribute("location", req.getRequestURI());
 			res.sendRedirect(req.getContextPath() + "/back_end/login/login.jsp");
-			
+			return;
 		}
 		chain.doFilter(request, response);
 	}

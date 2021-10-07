@@ -106,7 +106,7 @@
 	<tr>
     	<td>估價圖片</td>
     	<td>
-	    	<img width="100" height="100" src="<%=request.getContextPath()%>/back_end/appraisal_case_images/appraisal_case_images.do?aci_no=${appraisalCaseImagesVO.aci_no}&action=showIMG">
+	    	<img width="100" height="100" src="<%=request.getContextPath()%>/front_end/appraisal_case/appraisal_case.do?aci_no=${appraisalCaseImagesVO.aci_no}&action=showIMG">
 		</td>
   	</tr>
 	</c:forEach>

@@ -25,7 +25,7 @@
 <%@ include file="../front_include_page/CSS_link.jsp"%>
 <!--*******************	End Include CSS File ******************* -->
 <meta charset="UTF-8">
-<title>YSM-3C 後台管理</title>
+<title>YSM3C - 二手租賃商城</title>
 <link rel="icon" type="image/png" href="../back_CSS_JS/assets/imgaes/logo/favicon.png">
 
 </head>
@@ -97,7 +97,7 @@
 				<td>${appraisalCaseVO.aca_cod }</td>
 				<td>${appraisalCaseVO.aca_adrs }</td>
 				<td>
-					<FORM METHOD="post"	ACTION="<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do">
+					<FORM METHOD="post"	ACTION="<%= request.getContextPath()%>/front_end/appraisal_case/appraisal_case.do">
 						<input type="hidden"name="aca_no" value="${appraisalCaseVO.aca_no}">
 						<input type="hidden" name="action" value="caseInformation">
 						<input type="button" value="查看詳情"class="btn btn-outline-secondary" onclick="presses(${appraisalCaseVO.aca_no})">
@@ -129,7 +129,7 @@
 
 	<script>
 		function presses(data){
-			window.open("<%= request.getContextPath()%>/back_end/appraisal_case/appraisal_case.do?aca_no=" + data + "&action=caseInformation","","height=750,width=500,left=65,top=157,resizable=yes,scrollbars=yes");
+			window.open("<%= request.getContextPath()%>/front_end/appraisal_case/appraisal_case.do?aca_no=" + data + "&action=caseInformation","","height=750,width=500,left=65,top=157,resizable=yes,scrollbars=yes");
 		}
 	</script>
 

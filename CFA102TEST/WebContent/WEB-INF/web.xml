@@ -297,6 +297,15 @@
   	<servlet-name>Appraisal_CaseServlet</servlet-name>
 	<url-pattern>/back_end/appraisal_case/appraisal_case.do</url-pattern>  	
   </servlet-mapping>  
+ 
+  <servlet>
+  	<servlet-name>AppraisalCase_front</servlet-name>
+  	<servlet-class>com.appraisal_case.controller.AppraisalCase_front</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AppraisalCase_front</servlet-name>
+	<url-pattern>/front_end/appraisal_case/appraisal_case.do</url-pattern>  	
+  </servlet-mapping>  
 
   <servlet>
   	<servlet-name>Coupon_InformationServlet</servlet-name>
